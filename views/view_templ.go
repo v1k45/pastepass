@@ -29,7 +29,7 @@ func View() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div style=\"padding-bottom: 5rem;\"><hgroup><h3>View Paste</h3><p><small style=\"color: #8891A4;\">You can only view this paste once. Make sure to copy it before you close this page.</small></p></hgroup><form style=\"width: 33.33%;\" method=\"post\"><button type=\"submit\">Show Paste</button></form></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div style=\"padding-bottom: 5rem;\"><hgroup><h3>View Paste</h3><p><small style=\"color: #8891A4;\">You can only view this paste once. Make sure to copy it before you close this page.</small></p></hgroup><form method=\"post\"><button type=\"submit\" style=\"width: auto;\">Show Paste</button></form></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
