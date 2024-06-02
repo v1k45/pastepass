@@ -15,7 +15,7 @@ Run with default options:
 ./pastepass
 ```
 
-Open http://localhost:8080/ to access the web app. Use the `-h` option to find all options:
+Open http://localhost:8008/ to access the web app. Use the `-h` option to find all options:
 
 ```bash
 ./pastepass -h
@@ -31,7 +31,7 @@ Usage of ./pastepass:
   -reset-db
         Reset the database on startup
   -server-addr string
-        The server address to listen on (default ":8080")
+        The server address to listen on (default ":8008")
 ```
 
 ### Motivation
@@ -54,7 +54,5 @@ The server does not log any information about the pastes. The only information s
 ### TODO
 
 - [ ] Deployment instructions
-- [ ] Release binaries
 - [ ] Demo web app
 - [ ] Unit tests
-

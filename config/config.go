@@ -1,8 +1,8 @@
 package config
 
 var (
-	ServerAddr = ":8080"
+	ServerAddr = ":8008"
 	AppName    = "PastePass"
-	DBPath     = "pastes.boltdb"
+	DBPath     = "pastepass.boltdb"
 	ResetDB    = false
 )
