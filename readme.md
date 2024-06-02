@@ -12,7 +12,7 @@ PastePass is a single-binary, no dependency, fast and lightweight web service wr
 
 #### Download
 
-Download the binary from the [releases](https://github.com/v1k45/pastepass/releases) page or build it from source:
+Download the binary from the [releases](https://github.com/v1k45/pastepass/releases/latest) page or build it from source:
 
 ```bash
 git clone https://github.com/v1k45/pastepass.git
