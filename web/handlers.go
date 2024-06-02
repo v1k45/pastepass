@@ -47,11 +47,12 @@ func (h *Handler) Paste(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var scheme string
-	if r.TLS == nil {
-		scheme = "http"
+	if r.Header.Get("X-Forwarded-Proto") != "" {
+		scheme = r.Header.Get("X-Forwarded-Proto")
 	} else {
-		scheme = "https"
+		scheme = "http"
 	}
+
 	url := fmt.Sprintf("%s://%s/p/%s/%s", scheme, r.Host, paste.ID, paste.Key)
 
 	component := views.PasteSuccess(url)
