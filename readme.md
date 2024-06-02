@@ -48,11 +48,13 @@ The pastes are encrypted with AES-256-GCM. The encryption key for each paste is 
 
 The server does not log any information about the pastes. The only information stored is the encrypted paste and its metadata (e.g. expiration time).
 
-The server does not enforce HTTPS for the endpoints, but it is absolutely necessary to use HTTPS for all requests when deploying this service in production.
+> [!CAUTION]
+> The server does not enforce HTTPS for the endpoints, but it is absolutely necessary to use HTTPS for all requests when deploying this service in production.
 
 ### TODO
 
 - [ ] Deployment instructions
+- [ ] Release binaries
 - [ ] Demo web app
 - [ ] Unit tests
 
