@@ -8,6 +8,8 @@ You can use this service to share passwords, API keys, or any other sensitive in
 
 PastePass is a single-binary, no dependency, fast and lightweight web service written in Go. It uses BoltDB for storing pastes after encrypting them with AES.
 
+**Check it out live:** https://pastepass.vikasyadav.in/
+
 ### How to use
 
 #### Download
@@ -83,5 +85,4 @@ PastePass is only intended to be used as a self-hosted service, not a public pas
 ### TODO
 
 - [ ] Deployment instructions
-- [ ] Demo web app
 - [ ] Unit tests
