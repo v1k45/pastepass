@@ -15,7 +15,6 @@ jobs:
         # build and publish in parallel: linux/386, linux/amd64, linux/arm64, windows/386, windows/amd64, darwin/amd64, darwin/arm64
         goos: [linux, windows, darwin]
         goarch: ["386", amd64, arm64]
-        compress_assets: OFF
         exclude:
           - goarch: "386"
             goos: darwin
@@ -23,8 +22,9 @@ jobs:
             goos: windows
     steps:
       - uses: actions/checkout@v4
-      - uses: wangyoucao577/go-release-action@v1.50
+      - uses: wangyoucao577/go-release-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
+          compress_assets: false
