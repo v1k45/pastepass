@@ -29,9 +29,8 @@ chmod +x pastepass-linux-amd64
 
 #### Run
 
-```bash
-
 Run with default options:
+
 ```bash
 ./pastepass
 ```
