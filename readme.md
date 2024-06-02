@@ -27,6 +27,13 @@ The binary will be created in the `bin/` directory.  If you are downloading the 
 chmod +x pastepass-linux-amd64
 ```
 
+Here is a shortcut to download the binary for your platform:
+
+```bash
+curl -L  "https://github.com/v1k45/pastepass/releases/latest/download/pastepass-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m | sed 's/x86_64/amd64/; s/i[3-6]86/386/; s/aarch64/arm64/; s/armv7l/arm/')" -o pastepass
+chmod +x pastepass
+```
+
 #### Run
 
 Run with default options:
