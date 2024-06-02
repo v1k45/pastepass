@@ -29,14 +29,14 @@ func Decrypt(text string) templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div style=\"padding-bottom: 5rem;\"><hgroup><h3>View Paste</h3><p><small style=\"color: #8891A4;\">Please make sure to save the content before closing this page. This paste has been deleted and will no longer be available for viewing again.</small></p></hgroup><div><pre id=\"pastedContent\" style=\"padding: 1rem; min-height: 10rem;\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div style=\"padding-bottom: 5rem;\"><hgroup><h3>View Paste</h3><p><small style=\"color: #8891A4;\">Please make sure to save the content before closing this page. This paste has been deleted and will no longer be available for viewing again.</small></p></hgroup><div><pre id=\"pastedContent\" style=\"padding: 1rem; min-height: 10rem; max-height: 30rem;\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(text)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/decrypt.templ`, Line: 16, Col: 87}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/decrypt.templ`, Line: 16, Col: 106}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {

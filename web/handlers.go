@@ -3,6 +3,7 @@ package web
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/v1k45/pastepass/db"
@@ -26,18 +27,21 @@ func (h *Handler) Index(w http.ResponseWriter, r *http.Request) {
 func (h *Handler) Paste(w http.ResponseWriter, r *http.Request) {
 	pastedText := r.FormValue("text")
 	if pastedText == "" {
+		slog.Error("validation_error", "error", "paste content is required")
 		errorResponse(w, http.StatusBadRequest, "Invalid Data", "Paste content is required.")
 		return
 	}
 
 	expiresAt, err := getExpiresAt(r.FormValue("expiration"))
 	if err != nil {
+		slog.Error("validation_error", "error", err)
 		errorResponse(w, http.StatusBadRequest, "Invalid Data", "Invalid expiration time.")
 		return
 	}
 
 	paste, err := h.DB.NewPaste(pastedText, expiresAt)
 	if err != nil {
+		slog.Error("cannot_create_paste", "error", err)
 		errorResponse(w, http.StatusInternalServerError, "Internal Server Error", "Failed to create paste, please try again later.")
 		return
 	}
@@ -55,7 +59,9 @@ func (h *Handler) Paste(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) View(w http.ResponseWriter, r *http.Request) {
-	if _, err := h.DB.Get(r.PathValue("id")); err != nil {
+	id := r.PathValue("id")
+	if _, err := h.DB.Get(id); err != nil {
+		slog.Error("cannot_view_paste", "error", err, "id", id)
 		errorResponse(w, http.StatusNotFound, "Not Found", "The paste you are looking for is either expired or does not exist.")
 		return
 	}
@@ -65,8 +71,10 @@ func (h *Handler) View(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) Decrypt(w http.ResponseWriter, r *http.Request) {
-	decryptedText, err := h.DB.Decrypt(r.PathValue("id"), r.PathValue("key"))
+	id, key := r.PathValue("id"), r.PathValue("key")
+	decryptedText, err := h.DB.Decrypt(id, key)
 	if err != nil {
+		slog.Error("cannot_decrypt_paste", "error", err, "id", id)
 		errorResponse(
 			w, http.StatusInternalServerError,
 			"Internal Server Error", "The paste you are looking for is either expired, corrputed or does not exist.")

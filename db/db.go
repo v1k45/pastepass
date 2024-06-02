@@ -3,7 +3,7 @@ package db
 import (
 	"errors"
 	"fmt"
-	"log"
+	"log/slog"
 	"time"
 
 	"encoding/json"
@@ -24,15 +24,6 @@ var (
 
 type DB struct {
 	boltDB *bolt.DB
-}
-
-func NewDB(name string) (*DB, error) {
-	boltDB, err := bolt.Open(name, 0600, &bolt.Options{Timeout: 1 * time.Second})
-	if err != nil {
-		return nil, err
-	}
-
-	return &DB{boltDB: boltDB}, nil
 }
 
 func (d *DB) Close() error {
@@ -106,7 +97,7 @@ func (d *DB) Get(id string) (*Paste, error) {
 
 func (d *DB) Decrypt(id string, key string) (string, error) {
 	// delete paste if expired
-	if _, err := d.Get(id); err == ErrPasteExpired {
+	if _, err := d.Get(id); errors.Is(err, ErrPasteExpired) {
 		return "", d.Delete(id)
 	}
 
@@ -186,7 +177,7 @@ func (d *DB) DeleteExpired() error {
 
 	for _, id := range expiredPastes {
 		if err := d.Delete(id); err != nil {
-			log.Println(fmt.Errorf("error deleting expired paste %s: %v", id, err))
+			slog.Error("error_deleting_expired_paste", "id", id, "error", err)
 		}
 	}
 
@@ -199,7 +190,7 @@ func (d *DB) DeleteExpiredPeriodically(interval time.Duration) {
 
 	for range ticker.C {
 		if err := d.DeleteExpired(); err != nil {
-			log.Println(fmt.Errorf("error deleting expired pastes: %v", err))
+			slog.Error("error_starting_expired_paste_job", "error", err)
 		}
 	}
 }
