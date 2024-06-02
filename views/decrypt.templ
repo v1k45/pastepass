@@ -1,0 +1,25 @@
+package views
+
+templ Decrypt(text string) {
+    @base() {
+        <div style="padding-bottom: 5rem;">
+            <hgroup>
+            <h3>View Paste</h3>
+            <p>
+            <small style="color: #8891A4;">
+                Please make sure to save the content before closing this page.
+                This paste has been deleted and will no longer be available for viewing again.
+            </small>
+            </p>
+            </hgroup>
+            <div>
+                <pre id="pastedContent" style="padding: 1rem; min-height: 10rem;">{text}</pre>
+                <div>
+                    <button onclick="copyText(this, '#pastedContent')" data-tooltip="Click to copy">Copy content</button>
+                </div>
+            </div>
+            @copyTextScript()
+        </div>
+    }
+}
+

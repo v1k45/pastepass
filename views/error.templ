@@ -1,0 +1,14 @@
+package views
+
+templ Error(title, message string) {
+    @base() {
+        <div style="padding-bottom: 5rem;">
+            <hgroup>
+            <h3>{title}</h3>
+            <small style="color: #8891A4;">
+                {message}
+            </small>
+            </hgroup>
+        </div>
+    }
+}

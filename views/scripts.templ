@@ -1,0 +1,28 @@
+package views
+
+templ copyTextScript() {
+    <script>
+        function copyText(event, selector) {
+            var pastedContent = document.querySelector(selector);
+
+            // Create a range and select the text
+            var range = document.createRange();
+            range.selectNode(pastedContent);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            // Copy the selected text
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(pastedContent.innerText).then(function() {
+                    event.dataset.tooltip = 'Copied!';
+                    event.innerText = 'Copied!';
+                    setTimeout(function() {
+                        event.innerText = 'Copy content';
+                        event.dataset.tooltip = 'Click to copy';
+                        event.blur();
+                    }, 1000);
+                });
+            }
+        }
+    </script>
+}

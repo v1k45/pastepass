@@ -1,0 +1,24 @@
+package views
+
+templ PasteSuccess(url string) {
+  @base() {
+    <div style="padding-bottom: 5rem;">
+        <hgroup>
+        <h3>Paste Created</h3>
+        <p>
+          <small style="color: #8891A4;">
+            Your secret paste has been created. Share the following link with the recipient:
+          </small>
+        </p>
+        </hgroup>
+        <div>
+            <pre id="url" style="padding: 1rem; min-height: 3rem;">{url}</pre>
+            <div>
+                <button onclick="copyText(this, '#url')" data-tooltip="Click to copy">Copy content</button>
+                <a href={ templ.SafeURL(url) } style="margin-left: 1rem;">View Paste</a>
+            </div>
+        </div>
+        @copyTextScript()
+    </div>
+  }
+}
