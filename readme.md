@@ -10,29 +10,50 @@ PastePass is a single-binary, no dependency, fast and lightweight web service wr
 
 ### How to use
 
+#### Download
+
+Download the binary from the [releases](https://github.com/v1k45/pastepass/releases) page or build it from source:
+
+```bash
+git clone https://github.com/v1k45/pastepass.git
+cd pastepass
+make setup
+make build
+```
+
+The binary will be created in the `bin/` directory.  If you are downloading the binary, make sure to make it executable:
+
+```bash
+chmod +x pastepass-linux-amd64
+```
+
+#### Run
+
+```bash
+
 Run with default options:
 ```bash
 ./pastepass
 ```
 
-Open http://localhost:8008/ to access the web app. Use the `-h` option to find all options:
+Open http://localhost:8008/ to access the web app.
+
+Use the `-h` option to find all options:
 
 ```bash
 ./pastepass -h
 ``` 
 
-Usage:
-```
-Usage of ./pastepass:
-  -app-name string
-        The name of the application (e.g. ACME PastePass) (default "PastePass")
-  -db-path string
-        The path to the database file (default "pastes.boltdb")
-  -reset-db
-        Reset the database on startup
-  -server-addr string
-        The server address to listen on (default ":8008")
-```
+#### Options
+
+| Option       | Description                                                                | Default        |
+|--------------|----------------------------------------------------------------------------|----------------|
+| -app-name    | The name to display in the nav to ensure you are on the right environment. | PastePass      |
+| -db-path     | The path of the database file                                              | pastepass.db   |
+| -reset-db    | Delete all pastes before starting the server                               | `false`        |
+| -server-addr | The server address to listen to                                            | `:8008`        |
+| -h           | Show help message                                                          |                |
+
 
 ### Motivation
 
@@ -47,6 +68,8 @@ See the [screenshots](./docs/screenshots.md) for a preview of the web app.
 The pastes are encrypted with AES-256-GCM. The encryption key for each paste is generated randomly and stored in the database. The key is never stored on the server.
 
 The server does not log any information about the pastes. The only information stored is the encrypted paste and its metadata (e.g. expiration time).
+
+PastePass is only intended to be used as a self-hosted service, not a public paste bin.
 
 > [!CAUTION]
 > The server does not enforce HTTPS for the endpoints, but it is absolutely necessary to use HTTPS for all requests when deploying this service in production.
