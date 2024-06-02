@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/v1k45/paste/views"
+	"github.com/v1k45/pastepass/views"
 )
 
 var (

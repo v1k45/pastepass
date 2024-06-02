@@ -23,7 +23,7 @@ func base() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"color-scheme\" content=\"light dark\"><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css\"><title>Paste</title></head><body><main class=\"container\"><nav><ul><li><a href=\"/\">Paste</a> &mdash; secure one-time paste bin.</li></ul></nav><hr>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"color-scheme\" content=\"light dark\"><link rel=\"stylesheet\" href=\"/static/pico.min.css\"><title>Paste</title></head><body><main class=\"container\"><nav><ul><li><a href=\"/\">PastePass</a> &mdash; secure one-time paste bin.</li></ul></nav><hr>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -31,7 +31,7 @@ func base() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<hr><footer><small><p style=\"color: #8891A4;\">Paste is open-source and free to use. <a href=\"https://github.com/v1k45/paste\">View source on github</a>.</p><p style=\"color: #8891A4;\">Pasted content is encrypted and stored with an expiration time. Once the content is read, it is deleted from the server. <br></p></small></footer></main></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<hr><footer><small><p style=\"color: #8891A4;\">PastePass is open-source and free to use. <a href=\"https://github.com/v1k45/pastepass\">View source on github</a>.</p><p style=\"color: #8891A4;\">Pasted content is encrypted and stored with an expiration time. Once the content is read, it is deleted from the server. <br></p></small></footer></main><script src=\"/static/pastepass.js\"></script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

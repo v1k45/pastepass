@@ -7,7 +7,7 @@ templ base() {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+        <link rel="stylesheet" href="/static/pico.min.css"/>
         <title>Paste</title>
     </head>
     <body>
@@ -15,7 +15,7 @@ templ base() {
             <nav>
                 <ul>
                     <li>
-                    <a href="/">Paste</a> &mdash; secure one-time paste bin.
+                    <a href="/">PastePass</a> &mdash; secure one-time paste bin.
                     </li>
                 </ul>
             </nav>
@@ -25,7 +25,7 @@ templ base() {
             <footer>
                 <small>
                     <p style="color: #8891A4;">
-                        Paste is open-source and free to use. <a href="https://github.com/v1k45/paste">View source on github</a>.
+                        PastePass is open-source and free to use. <a href="https://github.com/v1k45/pastepass">View source on github</a>.
                     </p>
                     <p style="color: #8891A4;">
                         Pasted content is encrypted and stored with an expiration time. Once the content is read, it is deleted from the server. <br/>
@@ -33,6 +33,7 @@ templ base() {
                 </small>
             </footer>
         </main>
+        <script src="/static/pastepass.js"></script>
     </body>
     </html>
 }

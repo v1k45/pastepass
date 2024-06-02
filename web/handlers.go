@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/v1k45/paste/db"
-	"github.com/v1k45/paste/views"
+	"github.com/v1k45/pastepass/db"
+	"github.com/v1k45/pastepass/views"
 )
 
 type Handler struct {

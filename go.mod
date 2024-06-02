@@ -1,4 +1,4 @@
-module github.com/v1k45/paste
+module github.com/v1k45/pastepass
 
 go 1.22.3
 

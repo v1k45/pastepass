@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/v1k45/paste/db"
-	"github.com/v1k45/paste/web"
+	"github.com/v1k45/pastepass/db"
+	"github.com/v1k45/pastepass/web"
 )
 
 func main() {
