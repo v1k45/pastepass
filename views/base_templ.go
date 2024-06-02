@@ -59,7 +59,7 @@ func base() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<hr><footer><small><p style=\"color: #8891A4;\"><a href=\"https://github.com/v1k45/pastepass\">PastePass</a> is open-source and free to use. Created by <a href=\"https://github.com/v1k45/pastepass\">v1k45</a>.</p><p style=\"color: #8891A4;\">Pasted content is encrypted and stored with an expiration time. Once the content is read, it is deleted from the server. <br></p></small></footer></main><script src=\"/static/pastepass.js\"></script></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<hr><footer><small><p style=\"color: #8891A4;\"><a href=\"https://github.com/v1k45/pastepass\">PastePass</a> is open-source and free to use. Created by <a href=\"https://github.com/v1k45\">v1k45</a>.</p><p style=\"color: #8891A4;\">Pasted content is encrypted and stored with an expiration time. Once the content is read, it is deleted from the server. <br></p></small></footer></main><script src=\"/static/pastepass.js\"></script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
