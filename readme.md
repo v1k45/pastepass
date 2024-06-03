@@ -73,7 +73,7 @@ See the [screenshots](./docs/screenshots.md) for a preview of the web app.
 
 ### Security
 
-The pastes are encrypted with AES-256-GCM. The encryption key for each paste is generated randomly and stored in the database. The key is never stored on the server.
+The pastes are encrypted with AES-256-GCM. The encryption key for each paste is generated randomly and only the encrypted text is stored in the database. The key is never stored on the server.
 
 The server does not log any information about the pastes. The only information stored is the encrypted paste and its metadata (e.g. expiration time).
 
