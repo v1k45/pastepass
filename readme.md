@@ -52,6 +52,20 @@ Use the `-h` option to find all options:
 ./pastepass -h
 ``` 
 
+#### Run with docker
+
+Build the image
+
+```bash
+git clone https://github.com/v1k45/pastepass.git && cd pastepass
+docker build -t pastepass .
+```
+
+Run the image on the port 10001 with a volume mounted in `path/on/host` to store the database. ()
+```bash
+docker run -p 10001:8008 -v /path/on/host:/data pastepass
+```
+
 #### Options
 
 | Option       | Description                                                                | Default        |
