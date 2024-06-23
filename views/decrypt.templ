@@ -15,7 +15,7 @@ templ Decrypt(text string) {
             <div>
                 <pre id="pastedContent" style="padding: 1rem; min-height: 10rem; max-height: 30rem;">{text}</pre>
                 <div>
-                    <button onclick="copyText(this, '#pastedContent')" data-tooltip="Click to copy">Copy content</button>
+                    <button onclick="copyText(this, '#pastedContent')" data-copy-label="Copy content" data-tooltip="Click to copy">Copy content</button>
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@ func Decrypt(text string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</pre><div><button onclick=\"copyText(this, &#39;#pastedContent&#39;)\" data-tooltip=\"Click to copy\">Copy content</button></div></div></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</pre><div><button onclick=\"copyText(this, &#39;#pastedContent&#39;)\" data-copy-label=\"Copy content\" data-tooltip=\"Click to copy\">Copy content</button></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

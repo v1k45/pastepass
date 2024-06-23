@@ -17,7 +17,7 @@ templ copyTextScript() {
                     event.dataset.tooltip = 'Copied!';
                     event.innerText = 'Copied!';
                     setTimeout(function() {
-                        event.innerText = 'Copy content';
+                        event.innerText = event.dataset.copyLabel;
                         event.dataset.tooltip = 'Click to copy';
                         event.blur();
                     }, 1000);

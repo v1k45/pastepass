@@ -14,7 +14,7 @@ templ PasteSuccess(url string) {
         <div>
             <pre id="url" style="padding: 1rem; min-height: 3rem;">{url}</pre>
             <div>
-                <button onclick="copyText(this, '#url')" data-tooltip="Click to copy">Copy content</button>
+                <button onclick="copyText(this, '#url')" data-copy-label="Copy URL" data-tooltip="Click to copy">Copy URL</button>
                 <a href={ templ.SafeURL(url) } style="margin-left: 1rem;">View Paste</a>
             </div>
         </div>
