@@ -113,8 +113,12 @@ func (d *DB) Decrypt(id string, key string) (string, error) {
 			return ErrPasteNotFound
 		}
 
-		var err error
-		decryptedText, err = decrypt(encryptedPaste, key)
+		decryptionKey, err := NewEncryptionKeyFromBase64(key)
+		if err != nil {
+			return err
+		}
+
+		decryptedText, err = decryptionKey.Decrypt(encryptedPaste)
 		if err != nil {
 			return err
 		}

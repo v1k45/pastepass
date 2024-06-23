@@ -4,14 +4,15 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"io"
 	random "math/rand"
 )
 
-func encrypt(text string, key string) ([]byte, error) {
-	c, err := aes.NewCipher([]byte(key))
+func encrypt(text, key []byte) ([]byte, error) {
+	c, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
@@ -26,11 +27,11 @@ func encrypt(text string, key string) ([]byte, error) {
 		return nil, err
 	}
 
-	return gcm.Seal(nonce, nonce, []byte(text), nil), nil
+	return gcm.Seal(nonce, nonce, text, nil), nil
 }
 
-func decrypt(ciphertext []byte, key string) (string, error) {
-	c, err := aes.NewCipher([]byte(key))
+func decrypt(ciphertext, key []byte) (string, error) {
+	c, err := aes.NewCipher(key)
 	if err != nil {
 		return "", fmt.Errorf("failed to create cipher: %w", err)
 	}
@@ -52,6 +53,48 @@ func decrypt(ciphertext []byte, key string) (string, error) {
 	}
 
 	return string(plaintext), nil
+}
+
+type EncryptionKey struct {
+	Key []byte
+}
+
+func (k *EncryptionKey) Base64Key() string {
+	return base64.RawURLEncoding.EncodeToString(k.Key)
+}
+
+func NewEncryptionKey() *EncryptionKey {
+	key := make([]byte, keyLength)
+	if _, err := io.ReadFull(rand.Reader, key); err != nil {
+		panic(err)
+	}
+
+	return &EncryptionKey{
+		Key: key,
+	}
+}
+
+func NewEncryptionKeyFromBase64(base64Key string) (*EncryptionKey, error) {
+	key, err := base64.RawURLEncoding.DecodeString(base64Key)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(key) != 32 {
+		return nil, errors.New("invalid key length")
+	}
+
+	return &EncryptionKey{
+		Key: key,
+	}, nil
+}
+
+func (k *EncryptionKey) Encrypt(text string) ([]byte, error) {
+	return encrypt([]byte(text), k.Key)
+}
+
+func (k *EncryptionKey) Decrypt(ciphertext []byte) (string, error) {
+	return decrypt(ciphertext, k.Key)
 }
 
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
