@@ -2,7 +2,7 @@ package views
 
 templ Index() {
   @base() {
-    <form method="post">
+    <form method="post" onsubmit="event.target.querySelector('button').setAttribute('aria-busy', 'true');">
       <textarea
         name="text"
         placeholder="Paste your secret here, select expiration time and click 'Paste'"

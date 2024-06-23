@@ -11,9 +11,33 @@ templ View() {
             </small>
             </p>
             </hgroup>
-            <form method="post">
+            <form method="post" onsubmit="showPaste(event)">
                 <button type="submit" style="width: auto;">Show Paste</button>
             </form>
+            <script>
+                // submit a post request and replace the current page with the response
+                // this is to prevent user from resubmitting the form when they refresh the page
+                function showPaste(event) {
+                    event.preventDefault();
+
+                    // show loading
+                    event.target.querySelector('button').setAttribute('aria-busy', 'true');
+
+                    fetch(window.location.href, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'submit=true',
+                    }).then(function(response) {
+                        return response.text();
+                    }).then(function(body) {
+                        document.open();
+                        document.write(body);
+                        document.close();
+                    });
+                }
+            </script>
         </div>
     }
 }
