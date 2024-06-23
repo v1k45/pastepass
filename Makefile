@@ -5,5 +5,8 @@ build:
 	templ generate
 	go build -o ./bin/pastepass
 
+test:
+	go test ./...
+
 run:
 	./bin/pastepass

@@ -63,15 +63,15 @@ func (k *EncryptionKey) Base64Key() string {
 	return base64.RawURLEncoding.EncodeToString(k.Key)
 }
 
-func NewEncryptionKey() *EncryptionKey {
+func NewEncryptionKey() (*EncryptionKey, error) {
 	key := make([]byte, keyLength)
 	if _, err := io.ReadFull(rand.Reader, key); err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	return &EncryptionKey{
 		Key: key,
-	}
+	}, nil
 }
 
 func NewEncryptionKeyFromBase64(base64Key string) (*EncryptionKey, error) {

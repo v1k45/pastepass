@@ -24,10 +24,20 @@ var (
 
 type DB struct {
 	boltDB *bolt.DB
+	path   string
 }
 
 func (d *DB) Close() error {
 	return d.boltDB.Close()
+}
+
+func (d *DB) reset() error {
+	if err := d.Close(); err != nil {
+		return err
+	}
+
+	removeDB(d.path)
+	return nil
 }
 
 func (d *DB) NewPaste(text string, expiresAt time.Time) (*Paste, error) {
@@ -98,7 +108,12 @@ func (d *DB) Get(id string) (*Paste, error) {
 func (d *DB) Decrypt(id string, key string) (string, error) {
 	// delete paste if expired
 	if _, err := d.Get(id); errors.Is(err, ErrPasteExpired) {
-		return "", d.Delete(id)
+		// delete paste if expired
+		if err := d.Delete(id); err != nil {
+			slog.Error("error_deleting_expired_paste", "id", id, "error", err)
+			return "", err
+		}
+		return "", err
 	}
 
 	var decryptedText string

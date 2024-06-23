@@ -14,7 +14,11 @@ type Paste struct {
 }
 
 func NewEncryptedPaste(text string, expiresAt time.Time) (*Paste, error) {
-	key := NewEncryptionKey()
+	key, err := NewEncryptionKey()
+	if err != nil {
+		return nil, err
+	}
+
 	encryptedText, err := key.Encrypt(text)
 	if err != nil {
 		return nil, err

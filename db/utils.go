@@ -1,10 +1,11 @@
 package db
 
 import (
-	"github.com/boltdb/bolt"
 	"log/slog"
 	"os"
 	"time"
+
+	"github.com/boltdb/bolt"
 )
 
 func NewDB(path string, reset bool) (*DB, error) {
@@ -17,7 +18,7 @@ func NewDB(path string, reset bool) (*DB, error) {
 		return nil, err
 	}
 
-	return &DB{boltDB: boltDB}, nil
+	return &DB{boltDB: boltDB, path: path}, nil
 }
 
 func removeDB(path string) {
