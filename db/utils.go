@@ -1,7 +1,9 @@
 package db
 
 import (
+	"fmt"
 	"log/slog"
+	"math/rand"
 	"os"
 	"time"
 
@@ -34,4 +36,9 @@ func removeDB(path string) {
 	}
 
 	slog.Info("db_removed", "path", path)
+}
+
+func NewTestDB() (*DB, error) {
+	testDbName := fmt.Sprintf(".test.%d.boltdb", rand.Int())
+	return NewDB(testDbName, true)
 }

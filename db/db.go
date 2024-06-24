@@ -31,7 +31,7 @@ func (d *DB) Close() error {
 	return d.boltDB.Close()
 }
 
-func (d *DB) reset() error {
+func (d *DB) Reset() error {
 	if err := d.Close(); err != nil {
 		return err
 	}

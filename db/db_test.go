@@ -1,8 +1,6 @@
 package db
 
 import (
-	"fmt"
-	"math/rand"
 	"testing"
 	"time"
 
@@ -10,15 +8,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func newTestDB() (*DB, error) {
-	testDbName := fmt.Sprintf(".test.%d.boltdb", rand.Int())
-	return NewDB(testDbName, true)
-}
-
 func TestNewPaste(t *testing.T) {
-	db, err := newTestDB()
+	db, err := NewTestDB()
 	assert.NoError(t, err)
-	defer db.reset()
+	defer db.Reset()
 
 	paste, err := db.NewPaste("test paste", time.Now().Add(time.Hour))
 	assert.NoError(t, err)
@@ -32,9 +25,9 @@ func TestNewPaste(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
-	db, err := newTestDB()
+	db, err := NewTestDB()
 	assert.NoError(t, err)
-	defer db.reset()
+	defer db.Reset()
 
 	expirationTime := time.Now().Add(time.Hour)
 	paste, err := db.NewPaste("test paste", expirationTime)
@@ -68,9 +61,9 @@ func TestGet(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	db, err := newTestDB()
+	db, err := NewTestDB()
 	assert.NoError(t, err)
-	defer db.reset()
+	defer db.Reset()
 
 	paste, err := db.NewPaste("test paste", time.Now().Add(time.Hour))
 	assert.NoError(t, err)
@@ -83,9 +76,9 @@ func TestDelete(t *testing.T) {
 }
 
 func TestDecrypt(t *testing.T) {
-	db, err := newTestDB()
+	db, err := NewTestDB()
 	assert.NoError(t, err)
-	defer db.reset()
+	defer db.Reset()
 
 	t.Run("decrypt paste", func(t *testing.T) {
 		paste, err := db.NewPaste("test paste", time.Now().Add(time.Hour))
@@ -124,9 +117,9 @@ func TestDecrypt(t *testing.T) {
 }
 
 func TestDeleteExpired(t *testing.T) {
-	db, err := newTestDB()
+	db, err := NewTestDB()
 	assert.NoError(t, err)
-	defer db.reset()
+	defer db.Reset()
 
 	_, err = db.NewPaste("test paste", time.Now().Add(time.Hour))
 	assert.NoError(t, err)
