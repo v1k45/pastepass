@@ -99,4 +99,3 @@ PastePass is only intended to be used as a self-hosted service, not a public pas
 ### TODO
 
 - [ ] Deployment instructions
-- [ ] Unit tests
