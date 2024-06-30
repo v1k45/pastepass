@@ -24,6 +24,12 @@ jobs:
             goos: windows
     steps:
       - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+      - name: Install dependencies
+        run: go get .
+      - name: Test with the Go CLI
+        run: go test -v ./...
       - uses: wangyoucao577/go-release-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
