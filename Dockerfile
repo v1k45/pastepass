@@ -25,11 +25,13 @@ RUN apk add --no-cache tini ca-certificates \
 
 WORKDIR $APP_DIR
 COPY --from=builder /out/pastepass .
+ENV PATH=$APP_DIR:$PATH
 
 RUN mkdir -p $DATA_DIR && chown $UID:$GID $DATA_DIR
+WORKDIR $DATA_DIR
 
 USER $USER
 EXPOSE 8008
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["./pastepass", "-db-path", "/data/pastepass.db"]
+CMD ["pastepass"]
