@@ -1,4 +1,5 @@
 FROM golang:1.22-alpine3.19 AS builder
+LABEL org.opencontainers.image.source="https://github.com/v1k45/pastepass"
 
 # go mod cache layer
 WORKDIR /src
