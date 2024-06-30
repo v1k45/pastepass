@@ -5,4 +5,5 @@ var (
 	AppName    = "PastePass"
 	DBPath     = "pastepass.boltdb"
 	ResetDB    = false
+	Version    = "0.00-dev"
 )

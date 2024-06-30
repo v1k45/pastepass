@@ -29,3 +29,4 @@ jobs:
           goarch: ${{ matrix.goarch }}
           compress_assets: false
           asset_name: pastepass-${{ matrix.goos }}-${{ matrix.goarch }}
+          ldflags: -X "github.com/v1k45/pastepass/config.Version=${{ github.ref_name }}"
