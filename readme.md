@@ -12,9 +12,55 @@ PastePass is a single-binary, no dependency, fast and lightweight web service wr
 
 ### How to use
 
+#### Docker
+
+Easiest way to run PastePass is using Docker. Run the following command to start the service:
+
+```bash
+docker run -p 8008:8008 -v ./:/data ghcr.io/v1k45/pastepass
+```
+
+You can also use the image in a docker-compose file:
+
+```yaml
+version: '3'
+services:
+  pastepass:
+    image: ghcr.io/v1k45/pastepass:latest
+    ports:
+      - "8008:8008"
+    volumes:
+      - ./data/:/data
+```
+
+You can customize the options by passing them as command line arguments to docker-compose:
+
+```yaml
+version: '3'
+services:
+  pastepass:
+    image: ghcr.io/v1k45/pastepass:latest
+    command: ["pastepass", "-app-name", "MyPastePass", "-server-addr", ":8080"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data/:/data
+```
+
 #### Download
 
-Download the binary from the [releases](https://github.com/v1k45/pastepass/releases/latest) page or build it from source:
+Download the binary from the [releases](https://github.com/v1k45/pastepass/releases/latest) page or build it from source.
+
+#### Download binary
+
+Here is a shortcut to download the binary for your platform:
+
+```bash
+curl -L  "https://github.com/v1k45/pastepass/releases/latest/download/pastepass-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m | sed 's/x86_64/amd64/; s/i[3-6]86/386/; s/aarch64/arm64/; s/armv7l/arm/')" -o pastepass
+chmod +x pastepass
+```
+
+#### Build from source
 
 ```bash
 git clone https://github.com/v1k45/pastepass.git
@@ -27,13 +73,6 @@ The binary will be created in the `bin/` directory.  If you are downloading the 
 
 ```bash
 chmod +x pastepass-linux-amd64
-```
-
-Here is a shortcut to download the binary for your platform:
-
-```bash
-curl -L  "https://github.com/v1k45/pastepass/releases/latest/download/pastepass-$(uname | tr '[:upper:]' '[:lower:]')-$(uname -m | sed 's/x86_64/amd64/; s/i[3-6]86/386/; s/aarch64/arm64/; s/armv7l/arm/')" -o pastepass
-chmod +x pastepass
 ```
 
 #### Run
@@ -51,20 +90,6 @@ Use the `-h` option to find all options:
 ```bash
 ./pastepass -h
 ``` 
-
-#### Run with docker
-
-Build the image
-
-```bash
-git clone https://github.com/v1k45/pastepass.git && cd pastepass
-docker build -t pastepass .
-```
-
-Run the image on the port 10001 with a volume mounted in `path/on/host` to store the database. ()
-```bash
-docker run -p 10001:8008 -v /path/on/host:/data pastepass
-```
 
 #### Options
 
