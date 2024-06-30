@@ -6,7 +6,8 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . ./
-RUN CGO_ENABLED=0 go build -o /out/pastepass main.go
+ARG VERSION=0.00-dev
+RUN CGO_ENABLED=0 go build -o /out/pastepass -ldflags "-X 'github.com/v1k45/pastepass/config.Version=$VERSION'"
 
 
 FROM alpine:3.19
